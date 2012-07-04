@@ -18,9 +18,13 @@
  * @since         CakePHP(tm) v 2.1
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
-require_once dirname(__FILE__) . DS . 'ModelTestBase.php';
 
-class ModelCrossSchemaHabtmTest extends BaseModelTest {
+namespace Cake\Test\TestCase\Model;
+use Cake\Model\ConnectionManager;
+use Cake\Utility\ClassRegistry;
+use Cake\Utility\Hash;
+
+class ModelCrossSchemaHabtmTest extends ModelTestBase {
 
 /**
  * Fixtures to be used

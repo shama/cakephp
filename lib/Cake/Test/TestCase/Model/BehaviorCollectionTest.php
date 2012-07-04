@@ -19,7 +19,10 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
-App::uses('AppModel', 'Model');
+namespace Cake\Test\TestCase\Model;
+use Cake\Model\ModelBehavior;
+use Cake\TestSuite\TestCase;
+
 require_once dirname(__FILE__) . DS . 'models.php';
 
 /**
@@ -419,7 +422,7 @@ class TestAliasBehavior extends TestBehavior {
  *
  * @package       Cake.Test.Case.Model
  */
-class BehaviorCollectionTest extends CakeTestCase {
+class BehaviorCollectionTest extends TestCase {
 
 /**
  * fixtures property

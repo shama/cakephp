@@ -16,14 +16,16 @@
  * @since         CakePHP(tm) v 1.2.0.4206
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
-require_once dirname(__FILE__) . DS . 'ModelTestBase.php';
+
+namespace Cake\Test\TestCase\Model;
+use Cake\Core\Configure;
 
 /**
  * ModelValidationTest
  *
  * @package       Cake.Test.Case.Model
  */
-class ModelValidationTest extends BaseModelTest {
+class ModelValidationTest extends ModelTestBase {
 
 /**
  * Tests validation parameter order in custom validation methods

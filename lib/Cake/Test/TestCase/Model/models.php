@@ -20,6 +20,7 @@
  */
 namespace Cake\Test\TestCase\Model;
 use Cake\Model\Model;
+use Cake\Model\ConnectionManager;
 use Cake\TestSuite\Fixture\TestModel as CakeTestModel;
 
 /**

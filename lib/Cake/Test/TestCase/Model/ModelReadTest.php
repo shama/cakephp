@@ -16,13 +16,19 @@
  * @since         CakePHP(tm) v 1.2.0.4206
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
-require_once dirname(__FILE__) . DS . 'ModelTestBase.php';
+
+namespace Cake\Test\TestCase\Model;
+use Cake\Test\TestCase\Model\ModeTestBase;
+use Cake\Utility\Hash;
+use Cake\Utility\ClassRegistry;
+use Cake\Model\ConnectionManager;
+
 /**
  * ModelReadTest
  *
  * @package       Cake.Test.Case.Model
  */
-class ModelReadTest extends BaseModelTest {
+class ModelReadTest extends ModelTestBase {
 
 /**
  * testExists function

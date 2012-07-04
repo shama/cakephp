@@ -19,8 +19,9 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
-App::uses('Model', 'Model');
-App::uses('AppModel', 'Model');
+namespace Cake\Test\TestCase\Model\Behavior;
+use Cake\TestSuite\TestCase;
+
 require_once dirname(dirname(__FILE__)) . DS . 'models.php';
 
 /**
@@ -28,7 +29,7 @@ require_once dirname(dirname(__FILE__)) . DS . 'models.php';
  *
  * @package       Cake.Test.Case.Model.Behavior
  */
-class TreeBehaviorNumberTest extends CakeTestCase {
+class TreeBehaviorNumberTest extends TestCase {
 
 /**
  * Whether backup global state for each test method or not
@@ -43,7 +44,7 @@ class TreeBehaviorNumberTest extends CakeTestCase {
  * @var array
  */
 	public $settings = array(
-		'modelClass' => 'NumberTree',
+		'modelClass' => '\Cake\Test\TestCase\Model\NumberTree',
 		'leftField' => 'lft',
 		'rightField' => 'rght',
 		'parentField' => 'parent_id'

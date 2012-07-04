@@ -17,8 +17,11 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
-require_once dirname(__FILE__) . DS . 'ModelTestBase.php';
-App::uses('DboSource', 'Model/Datasource');
+namespace Cake\Test\TestCase\Model;
+use Cake\Model\Datasource\DboSource;
+use Cake\Model\ConnectionManager;
+use Cake\Utility\ClassRegistry;
+use Cake\Utility\Hash;
 
 /**
  * DboMock class
@@ -47,7 +50,7 @@ class DboMock extends DboSource {
  *
  * @package       Cake.Test.Case.Model
  */
-class ModelIntegrationTest extends BaseModelTest {
+class ModelIntegrationTest extends ModelTestBase {
 
 /**
  * testAssociationLazyLoading

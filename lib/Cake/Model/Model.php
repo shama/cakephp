@@ -31,6 +31,7 @@ use Cake\Utility\ClassRegistry;
 use Cake\Utility\Hash;
 use Cake\Utility\Inflector;
 use Cake\Utility\Set;
+use Cake\Utility\String;
 use Cake\Utility\Xml;
 
 /**

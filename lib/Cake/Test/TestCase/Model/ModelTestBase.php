@@ -17,8 +17,11 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
-App::uses('Model', 'Model');
-App::uses('AppModel', 'Model');
+namespace Cake\Test\TestCase\Model;
+use Cake\Core\Configure;
+use Cake\Utility\ClassRegistry;
+use Cake\TestSuite\TestCase;
+
 require_once dirname(__FILE__) . DS . 'models.php';
 
 /**
@@ -26,7 +29,7 @@ require_once dirname(__FILE__) . DS . 'models.php';
  *
  * @package       Cake.Test.Case.Model
  */
-abstract class BaseModelTest extends CakeTestCase {
+abstract class ModelTestBase extends TestCase {
 
 /**
  * autoFixtures property
