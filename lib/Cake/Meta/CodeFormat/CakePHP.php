@@ -150,8 +150,7 @@ trait CakePHP {
 
 		$out = $this->_docblock();
 		$out .= $i . $this->_data['access'] . ' $' . $this->_data['name'] . ' = ';
-		// TODO: Fix space indents to tabs
-		$out .= str_replace($nl, $nl . $i, var_export($this->_data['value'], true));
+		$out .= str_replace($nl, $nl . $i, str_replace('  ', $i, var_export($this->_data['value'], true)));
 		$out .= ';' . $nl;
 
 		return $out;

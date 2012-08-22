@@ -66,8 +66,10 @@ class MetaClassTest extends TestCase {
 	 */
 	public function testReadMethods() {
 		$class = new MetaClass('SomePagesController', 'Controller');
-		$this->assertEquals(3, count($class->methods));
-		debug($class->methods);
+		$this->assertEquals('display', $class->methods['display']->name);
+		$this->assertEquals('index', $class->methods['index']->name);
+		$this->assertEquals('responseGenerator', $class->methods['responseGenerator']->name);
+		//debug($class->methods);
 	}
 
 	/**
@@ -84,9 +86,9 @@ class MetaClassTest extends TestCase {
 				'Cake\\Network\\Response',
 			))
 			->docblock(array(
-				'Some Pages Controller',
+				'SomePagesController class',
 				'',
-				'@package Cake.Test',
+				'@package       Cake.Test.Case.Routing',
 			))
 			->createProperty('paginate', array('limit' => 25), array(
 				'docblock' => 'Paginate',

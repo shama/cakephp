@@ -66,7 +66,7 @@ class MetaMethod {
 					'default' => null,
 					'hasDefault' => false,
 				), $param);
-				$this->createParameter($param['name'], $param['type'], $param['default']);
+				$this->createParameter($param['name'], $param['type'], $param['default'], $param['hasDefault']);
 			}
 			unset($options['parameters']);
 		}
@@ -84,7 +84,7 @@ class MetaMethod {
 	 * @param boolean $hasDefault
 	 */
 	public function createParameter($name, $type = null, $default = null, $hasDefault = false) {
-		$this->addParameter(new MetaParameter($name, $type, $default, $hasDefault));
+		$this->_parameters[] = new MetaParameter($name, $type, $default, $hasDefault);
 		return $this;
 	}
 }
