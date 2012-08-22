@@ -207,8 +207,11 @@ class MetaClass {
 
 		$this->_data['interface'] = $this->_Reflection->isInterface();
 
-		// TODO: This should only getShortName if the same as namespace
-		$this->_data['extends'] = $this->_Reflection->getParentClass()->getShortName();
+		$parent = $this->_Reflection->getParentClass();
+		if ($parent) {
+			// TODO: This should only getShortName if the same as namespace
+			$this->_data['extends'] = $parent->getShortName();
+		}
 		$interfaces = $this->_Reflection->getInterfaces();
 		$count = count($interfaces);
 		if ($count > 0) {
