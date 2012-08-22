@@ -105,26 +105,34 @@ class MetaClass {
 	}
 
 	/**
-	 * Create a new method on this class
+	 * Create or add a MetaMethod
 	 *
-	 * @param string $name Method name
+	 * @param string|MetaMethod $name Method name or MetaMethod object
 	 * @param string $value Contents of the method
 	 * @param array $options Additional parameters to set
 	 */
-	public function createMethod($name, $value = null, $options = array()) {
-		$this->_methods[$name] = new MetaMethod($name, $value, $options);
+	public function method($name, $value = null, $options = array()) {
+		if (is_object($name)) {
+			$this->_methods[$name->name] = $name;
+		} else {
+			$this->_methods[$name] = new MetaMethod($name, $value, $options);
+		}
 		return $this;
 	}
 
 	/**
-	 * Create a new property on this class
+	 * Create or add a MetaProperty
 	 *
 	 * @param string $name Property name
 	 * @param string $value Value of the property
 	 * @param array $options Additional parameters to set
 	 */
-	public function createProperty($name, $value = null, $options = array()) {
-		$this->_properties[$name] = new MetaProperty($name, $value, $options);
+	public function property($name, $value = null, $options = array()) {
+		if (is_object($name)) {
+			$this->_properties[$name->name] = $name;
+		} else {
+			$this->_properties[$name] = new MetaProperty($name, $value, $options);
+		}
 		return $this;
 	}
 
@@ -299,7 +307,7 @@ class MetaClass {
 					$default = $param->getDefaultValue();
 					$hasDefault = true;
 				}
-				$this->_methods[$name]->createParameter($param->name, $type, $default, $hasDefault);
+				$this->_methods[$name]->parameter($param->name, $type, $default, $hasDefault);
 			}
 		}
 		return $this;

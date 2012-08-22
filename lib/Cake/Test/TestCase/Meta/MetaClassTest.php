@@ -17,6 +17,7 @@ namespace Cake\Test\TestCase\Meta;
 
 use Cake\Core\App;
 use Cake\Meta\MetaClass;
+use Cake\Meta\MetaMethod;
 use Cake\TestSuite\TestCase;
 use Cake\Utility\File;
 
@@ -77,6 +78,7 @@ class MetaClassTest extends TestCase {
 	 */
 	public function testCreateClass() {
 		$class = new MetaClass();
+		$adminEdit = new MetaMethod('admin_edit');
 		$class
 			->name('SomePagesController')
 			->namespace('TestApp\\Controller')
@@ -90,15 +92,16 @@ class MetaClassTest extends TestCase {
 				'',
 				'@package       Cake.Test.Case.Routing',
 			))
-			->createProperty('paginate', array('limit' => 25), array(
+			->property('paginate', array('limit' => 25), array(
 				'docblock' => 'Paginate',
 			))
-			->createMethod('display', "\t\t" . '$this->set("slug", $slug);', array(
+			->method('display', "\t\t" . '$this->set("slug", $slug);', array(
 				'parameters' => array(
 					array('name' => 'slug', 'default' => 'testing')
 				),
 				'docblock' => 'display method'
-			));
+			))
+			->method($adminEdit);
 		debug((string) $class);
 	}
 
@@ -123,10 +126,12 @@ class MetaClassTest extends TestCase {
 	 */
 	public function testMerge() {
 		$class = new MetaClass('PagesController', 'Controller');
-		$class2 = new MetaClass('PagesController', 'Controller');
-		$class2->name('Test');
+
+		$class2 = new MetaClass('DontOverwrite', 'Controller');
+		$class2->method('index');
+
 		$class = $class->merge($class2);
-		$this->assertEquals('Test', $class->name);
-		//debug((string) $class);
+		$this->assertEquals('PagesController', $class->name);
+		$this->assertEquals('index', $class->methods['index']->name);
 	}
 }

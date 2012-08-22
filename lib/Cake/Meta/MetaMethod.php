@@ -66,7 +66,7 @@ class MetaMethod {
 					'default' => null,
 					'hasDefault' => false,
 				), $param);
-				$this->createParameter($param['name'], $param['type'], $param['default'], $param['hasDefault']);
+				$this->parameter($param['name'], $param['type'], $param['default'], $param['hasDefault']);
 			}
 			unset($options['parameters']);
 		}
@@ -76,15 +76,19 @@ class MetaMethod {
 	}
 
 	/**
-	 * Create a parameter
+	 * Create or add a MetaParameter
 	 *
-	 * @param string $name
-	 * @param string $type
-	 * @param mixed $default
-	 * @param boolean $hasDefault
+	 * @param string|MetaParamter $name Name of parameter or MetaParameter object
+	 * @param string $type Type of parameter
+	 * @param mixed $default Default value of parameter
+	 * @param boolean $hasDefault If has a default, used if the default is null
 	 */
-	public function createParameter($name, $type = null, $default = null, $hasDefault = false) {
-		$this->_parameters[] = new MetaParameter($name, $type, $default, $hasDefault);
+	public function parameter($name, $type = null, $default = null, $hasDefault = false) {
+		if (is_object($name)) {
+			$this->_parameters[$name->name] = $name;
+		} else {
+			$this->_parameters[$name] = new MetaParameter($name, $type, $default, $hasDefault);
+		}
 		return $this;
 	}
 }
