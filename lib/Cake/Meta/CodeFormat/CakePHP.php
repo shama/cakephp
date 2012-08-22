@@ -45,7 +45,7 @@ trait CakePHP {
 		$args = func_get_args();
 		foreach ($args as $merge) {
 			// TODO: Check if a Meta[Type]
-			$this->_data = Hash::merge($this->_data, $merge->data);
+			$this->_data = Hash::merge($merge->data, $this->_data);
 			// TODO: This could be DRYer
 			if ($this->_iama === 'class') {
 				foreach ($merge->methods as $key => $method) {
