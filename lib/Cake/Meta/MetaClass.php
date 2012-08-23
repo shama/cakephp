@@ -34,12 +34,12 @@ class MetaClass {
 	 *
 	 * @var array
 	 */
-	protected $_data = array(
+	protected $_data = [
 		'name' => '',
 		'path' => '',
 		'namespace' => '',
-		'uses' => array(),
-		'traits' => array(),
+		'uses' => [],
+		'traits' => [],
 		'docblock' => '',
 		'final' => false,
 		'static' => false,
@@ -47,22 +47,22 @@ class MetaClass {
 		'abstract' => false,
 		'trait' => false,
 		'extends' => false,
-		'implements' => array(),
-	);
+		'implements' => [],
+	];
 
 	/**
 	 * Properties this MetaClass has
 	 *
 	 * @var array
 	 */
-	protected $_properties = array();
+	protected $_properties = [];
 
 	/**
 	 * Methods this MetaClass has
 	 *
 	 * @var array
 	 */
-	protected $_methods = array();
+	protected $_methods = [];
 
 	/**
 	 * Identify what I am to the CodeFormat
@@ -111,7 +111,7 @@ class MetaClass {
 	 * @param string $value Contents of the method
 	 * @param array $options Additional parameters to set
 	 */
-	public function method($name, $value = null, $options = array()) {
+	public function method($name, $value = null, $options = []) {
 		if (is_object($name)) {
 			$this->_methods[$name->name] = $name;
 		} else {
@@ -127,7 +127,7 @@ class MetaClass {
 	 * @param string $value Value of the property
 	 * @param array $options Additional parameters to set
 	 */
-	public function property($name, $value = null, $options = array()) {
+	public function property($name, $value = null, $options = []) {
 		if (is_object($name)) {
 			$this->_properties[$name->name] = $name;
 		} else {
@@ -228,7 +228,7 @@ class MetaClass {
 		}
 
 		preg_match_all('/^use (.+);$/im', $this->_fakeFileContents, $out);
-		$this->_data['uses'] = !empty($out[1]) ? $out[1] : array();
+		$this->_data['uses'] = !empty($out[1]) ? $out[1] : [];
 
 		$this->_data['docblock'] = $this->_Reflection->getDocComment();
 
@@ -244,7 +244,7 @@ class MetaClass {
 	 * @return $this
 	 */
 	protected function _readProperties() {
-		$this->_properties = array();
+		$this->_properties = [];
 		foreach ($this->_Reflection->getProperties() as $property) {
 			if ($property->getDeclaringClass()->name !== $this->_Reflection->name) {
 				continue;
@@ -282,7 +282,7 @@ class MetaClass {
 	 * @return $this
 	 */
 	protected function _readMethods() {
-		$this->_methods = array();
+		$this->_methods = [];
 		foreach ($this->_Reflection->getMethods() as $method) {
 			if ($method->getDeclaringClass()->name !== $this->_Reflection->name) {
 				continue;
@@ -290,9 +290,9 @@ class MetaClass {
 			$name = $method->getName();
 			$value = $this->_readMethodContents($method);
 
-			$options = array(
+			$options = [
 				'docblock' => $method->getDocComment(),
-			);
+			];
 			if ($method->isPrivate()) {
 				$options['access'] = 'private';
 			}

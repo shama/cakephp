@@ -30,7 +30,10 @@ class MetaParameterTest extends TestCase {
 		$parameter = new MetaParameter('testing');
 		$this->assertEquals('$testing', (string) $parameter);
 
-		$parameter = new MetaParameter('id', 2);
+		$parameter = new MetaParameter('id', 'integer', 2);
 		$this->assertEquals('$id = 2', (string) $parameter);
+
+		$parameter = new MetaParameter('slug', null, null, true);
+		$this->assertEquals('$slug = NULL', (string) $parameter);
 	}
 }

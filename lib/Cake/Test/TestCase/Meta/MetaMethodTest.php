@@ -15,6 +15,7 @@
 
 namespace Cake\Test\TestCase\Meta;
 
+use Cake\Core\App;
 use Cake\Meta\MetaMethod;
 use Cake\TestSuite\TestCase;
 
@@ -28,9 +29,9 @@ class MetaMethodTest extends TestCase {
 	 */
 	public function setUp() {
 		parent::setUp();
-		App::build(array(
-			'Controller' => array(CAKE . 'Test' . DS . 'TestApp' . DS . 'Controller' . DS)
-		), App::RESET);
+		App::build([
+			'Controller' => [CAKE . 'Test' . DS . 'TestApp' . DS . 'Controller' . DS],
+		], App::RESET);
 	}
 
 	/**
@@ -48,16 +49,16 @@ class MetaMethodTest extends TestCase {
 		$method = new MetaMethod(
 			'index',
 			"\t\t" . '$this->set("data", $this->paginate());',
-			array('parameters' => array(
-				array('name' => 'id'),
-			))
+			['parameters' => [
+				['name' => 'id'],
+			]]
 		);
-		$expected = array(
+		$expected = [
 			"\t" . 'public function index($id) {',
 			"\t\t" . '$this->set("data", $this->paginate());',
 			"\t" . '}',
 			'',
-		);
+		];
 		$this->assertEquals(implode("\n", $expected), (string) $method);
 	}
 }

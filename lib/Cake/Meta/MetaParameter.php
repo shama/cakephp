@@ -28,12 +28,12 @@ class MetaParameter {
 	 *
 	 * @var array
 	 */
-	protected $_data = array(
+	protected $_data = [
 		'name' => null,
 		'type' => null,
 		'hasDefault' => false,
 		'default' => null,
-	);
+	];
 
 	/**
 	 * Identify what I am

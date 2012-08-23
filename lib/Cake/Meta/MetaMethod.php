@@ -30,20 +30,20 @@ class MetaMethod {
 	 *
 	 * @var array
 	 */
-	protected $_data = array(
+	protected $_data = [
 		'name' => null,
 		'value' => null,
 		'docblock' => null,
 		'static' => false,
 		'access' => 'public',
-	);
+	];
 
 	/**
 	 * Parameters this MetaMethod has
 	 *
 	 * @var array
 	 */
-	protected $_parameters = array();
+	protected $_parameters = [];
 
 	/**
 	 * Identify what I am
@@ -55,7 +55,7 @@ class MetaMethod {
 	/**
 	 * Create a MetaMethod
 	 */
-	public function __construct($name, $value = '', $options = array()) {
+	public function __construct($name, $value = '', $options = []) {
 		$this->_data['name'] = $name;
 		$this->_data['value'] = $value;
 		if (!empty($options['parameters'])) {

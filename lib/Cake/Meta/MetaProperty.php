@@ -28,13 +28,13 @@ class MetaProperty {
 	 *
 	 * @var array
 	 */
-	protected $_data = array(
+	protected $_data = [
 		'name' => null,
 		'type' => null,
 		'value' => null,
 		'docblock' => '',
 		'access' => 'public',
-	);
+	];
 
 	/**
 	 * Identify what I am
@@ -50,7 +50,7 @@ class MetaProperty {
 	 * @param mixed $value
 	 * @param array $options
 	 */
-	public function __construct($name, $value = null, $options = array()) {
+	public function __construct($name, $value = null, $options = []) {
 		$this->_data['name'] = $name;
 		$this->_data['value'] = $value;
 		foreach ($options as $key => $val) {

@@ -31,10 +31,10 @@ trait CakePHP {
 	 *
 	 * @var array
 	 */
-	protected $_codeFormatOptions = array(
+	protected $_codeFormatOptions = [
 		'indent' => "\t",
 		'newline' => "\n",
-	);
+	];
 
 	/**
 	 * Merge other Meta objects with this one
@@ -168,7 +168,7 @@ trait CakePHP {
 		$out = $this->_docblock();
 
 		$out .= $i . $this->_data['access'] . ' function ' . $this->_data['name'] . '(';
-		$params = array();
+		$params = [];
 		foreach ($this->parameters as $parameter) {
 			$params[] = $parameter->write();
 		}
@@ -187,7 +187,7 @@ trait CakePHP {
 	 */
 	protected function _writeParameter() {
 		$out = '';
-		$scalar = array('integer', 'float', 'string', 'boolean');
+		$scalar = ['integer', 'float', 'string', 'boolean'];
 		if (!empty($this->_data['type']) && !in_array(strtolower($this->_data['type']), $scalar)) {
 			$out .= $this->type . ' ';
 		}

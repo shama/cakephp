@@ -27,11 +27,11 @@ class MetaPropertyTest extends TestCase {
 	 * testCreate
 	 */
 	public function testCreate() {
-		$property = new MetaProperty('paginate', array(
+		$property = new MetaProperty('paginate', [
 			'limit' => 25,
-			'order' => array('Page.sort' => 'asc'),
-		));
-		$expected = array(
+			'order' => ['Page.sort' => 'asc'],
+		]);
+		$expected = [
 			"\t" . 'public $paginate = array(',
 			"\t\t" . "'limit' => 25,",
 			"\t\t" . "'order' => array(",
@@ -39,7 +39,7 @@ class MetaPropertyTest extends TestCase {
 			"\t\t" . "),",
 			"\t" . ');',
 			'',
-		);
+		];
 		debug("\n" . (string) $property);
 		//$this->assertEquals(implode("\n", $expected), (string) $property);
 	}

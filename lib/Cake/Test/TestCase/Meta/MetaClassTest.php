@@ -31,9 +31,9 @@ class MetaClassTest extends TestCase {
 	 */
 	public function setUp() {
 		parent::setUp();
-		App::build(array(
-			'Controller' => array(CAKE . 'Test' . DS . 'TestApp' . DS . 'Controller' . DS)
-		), App::RESET);
+		App::build([
+			'Controller' => [CAKE . 'Test' . DS . 'TestApp' . DS . 'Controller' . DS],
+		], App::RESET);
 	}
 
 	/**
@@ -52,10 +52,10 @@ class MetaClassTest extends TestCase {
 		$this->assertEquals('SomePagesController', $class->name);
 		$this->assertEquals('Controller', $class->extends);
 		$this->assertEquals('TestApp\\Controller', $class->namespace);
-		$this->assertEquals(array(
+		$this->assertEquals([
 			'Cake\\Controller\\Controller',
 			'Cake\\Network\\Response',
-		), $class->uses);
+		], $class->uses);
 		$this->assertEquals(false, $class->interface);
 		$this->assertEquals(false, $class->static);
 		$this->assertEquals(false, $class->trait);
@@ -83,24 +83,24 @@ class MetaClassTest extends TestCase {
 			->name('SomePagesController')
 			->namespace('TestApp\\Controller')
 			->extends('Controller')
-			->uses(array(
+			->uses([
 				'Cake\\Controller\\Controller',
 				'Cake\\Network\\Response',
-			))
-			->docblock(array(
+			])
+			->docblock([
 				'SomePagesController class',
 				'',
 				'@package       Cake.Test.Case.Routing',
-			))
-			->property('paginate', array('limit' => 25), array(
+			])
+			->property('paginate', ['limit' => 25], [
 				'docblock' => 'Paginate',
-			))
-			->method('display', "\t\t" . '$this->set("slug", $slug);', array(
-				'parameters' => array(
-					array('name' => 'slug', 'default' => 'testing')
-				),
+			])
+			->method('display', "\t\t" . '$this->set("slug", $slug);', [
+				'parameters' => [
+					['name' => 'slug', 'default' => 'testing'],
+				],
 				'docblock' => 'display method'
-			))
+			])
 			->method($adminEdit);
 		debug((string) $class);
 	}
