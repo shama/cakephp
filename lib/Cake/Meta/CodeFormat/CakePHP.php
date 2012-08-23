@@ -43,39 +43,23 @@ trait CakePHP {
 	 */
 	public function merge() {
 		$args = func_get_args();
-		foreach ($args as $merge) {
+		foreach ($args as $meta) {
 			// TODO: Check if a Meta[Type]
-			$this->_data = Hash::merge($merge->data, $this->_data);
-			// TODO: This could be DRYer
+			$this->_data = Hash::merge($meta->data, $this->_data);
+			$merge = function($type) use ($meta) {
+				foreach ($meta->{$type} as $key => $val) {
+					if (array_key_exists($key, $this->{'_' . $type})) {
+						$this->{'_' . $type}[$key]->merge($val);
+					} else {
+						$this->{'_' . $type}[$key] = $val;
+					}
+				}
+			};
 			if ($this->_iama === 'class') {
-				foreach ($merge->methods as $key => $method) {
-					if (array_key_exists($key, $this->_methods)) {
-						// Merge method into found this methods
-						$this->_methods[$key]->merge($method);
-					} else {
-						// Add new method to this
-						$this->_methods[$key] = $method;
-					}
-				}
-				foreach ($merge->properties as $key => $property) {
-					if (array_key_exists($key, $this->_properties)) {
-						// Merge property into found this properties
-						$this->_properties[$key]->merge($property);
-					} else {
-						// Add new property to this
-						$this->_property[$key] = $property;
-					}
-				}
+				$merge('methods');
+				$merge('properties');
 			} else if ($this->_iama === 'method') {
-				foreach ($merge->parameters as $key => $parameter) {
-					if (array_key_exists($key, $this->_parameters)) {
-						// Merge parameters into found this paramters
-						$this->_parameters[$key]->merge($parameter);
-					} else {
-						// Add new parameter to this
-						$this->_parameters[$key] = $parameter;
-					}
-				}
+				$merge('parameters');
 			}
 		}
 		
